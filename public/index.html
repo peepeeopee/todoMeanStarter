@@ -43,11 +43,24 @@
 
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.name }}
-					</label>
-				</div>
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover">
+				<thead class="info">
+					<tr>
+						<th>Name</th>
+						<th>Priority</th>
+						<th>Duration</th>
+						<th>Active</th>
+					</tr>
+				</thead>
+					<tr ng-repeat="todo in todos">
+						<td>{{todo.name}}</td>
+						<td>{{todo.priority}}</td>
+						<td>{{todo.duration}}</td>
+						<td>{{todo.active}}</td>
+					</tr>
+				</table>
+			</div>
 
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
