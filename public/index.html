@@ -76,7 +76,14 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+					<span>
+						Name:
+						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.newTask.name">
+						Priority:
+						<input type="number" class="form-control input-sm" min="0" max="10" ng-model="formData.newTask.priority">
+						Duration:
+						<input type="number" class="form-control input-md" min="15" ng-model="formData.newTask.duration">
+					</span>
 					</div>
 
 					<!-- createToDo() WILL CREATE NEW TODOS -->
@@ -85,10 +92,10 @@
 			</div>
 		</div>
 
-		<div class="text-center text-muted">
+		<!--<div class="text-center text-muted">
 			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
 			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
-		</div>
+		</div>-->
 
 	</div>
 

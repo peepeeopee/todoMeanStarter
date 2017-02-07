@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('Todos', {
-  name : String,
-  priority : Number,
-  duration : Number,
-  active : Boolean,
-  begin : Date,
-  end : Date
+  name : {type:String},
+  priority : {type: Number},
+  duration : {type: Number},
+  active : { type: Boolean, default: true},
+  begin : {type: Date, default: null},
+  end :  {type: Date, default: null}
 },
 'tasks'
 );
