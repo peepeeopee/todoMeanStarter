@@ -33,7 +33,7 @@ angular.module('todoService', [])
 				  current.end = new Date(currentTime.getTime() + current.duration*60000)//helperMethods.addMinutes(currentTime, current.duration)
 				}
 				//if beginning/end time is after 5pm or beginning/end time is before 8am
-				if (current.begin.getHours() >= 18 || current.begin.getHours() <= 8) {
+				if (current.begin.getHours() >= 17 || current.begin.getHours() <= 8) {
 				  var newTime = new Date()
 				  newTime.setDate(current.begin.getDate() + 1)
 				  newTime.setHours(9)
