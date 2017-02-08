@@ -55,10 +55,10 @@ angular.module('todoController', [])
 
 		};
 
-		$scope.updateTodo = function(id){
+		$scope.updateTodo = function(task){
 			$scope.loading = true;
 
-			var todoUpdateTarget = $scope.todos[id]
+			var todoUpdateTarget = task
 			if(todoUpdateTarget){
 				Todos.update(todoUpdateTarget)
 				.success(function(data){

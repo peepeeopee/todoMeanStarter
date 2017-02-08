@@ -79,7 +79,7 @@ module.exports = function (app) {
     });
 
     // update todo
-    app.put('/api/todos/:todo_id',function(req, res){
+    app.put('/api/todos',function(req, res){
       var task = req.body
 
       Todo.save(function(err,todo){
@@ -87,6 +87,19 @@ module.exports = function (app) {
           console.log(err)
         }
       })
+
+      Todo.findOneAndUpdate(
+        {'_id':task._id},
+        task,
+        {upsert:false},
+        function(err,doc){
+          if(err){
+            res.send(500,{error:err})
+            return res.send('Updated successfully')
+          }
+        }
+      )
+      //query._id = new mongoose.mongo.ObjectID();
     })
 
     // delete a todo
