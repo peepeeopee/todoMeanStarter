@@ -62,7 +62,9 @@ angular.module('todoController', [])
 			if(todoUpdateTarget){
 				Todos.update(todoUpdateTarget)
 				.success(function(data){
-					$scope.loading = false
+					$scope.loading = false;
+					$scope.formData = {}; // clear the form so our user is ready to enter another
+					$scope.todos = data; // assign our new list of todos
 				})
 			} else {
 				$scope.loading = false
