@@ -1,0 +1,58 @@
+body{
+  background-color: #444444;
+}
+.container{
+  background-color: #444444;
+}
+.jumbotron.text-center{
+  background-color: #444444;
+}
+@font-face {
+  font-family: ordinaryGuy;
+  src: url('../../Fonts/ordinary-guy-demo/ordinaryguyDEMO.otf') format('opentype');
+}
+@font-face {
+  font-family: jura;
+  src: url('../Fonts/jura/Jura-Regular.ttf') format('opentype');
+}
+@font-face {
+  font-family: nolies;
+  src: url('../../Fonts/no-more-lies/nomorelies.ttf') format('opentype');
+}
+@font-face {
+  font-family: digital;
+  src: url('../../Fonts/style-7_digital-7/digital-7.ttf') format('opentype')
+}
+h1, h2, h3, p, th, tr, a, label, li, ul {
+  font-family: jura;
+  color: white;
+}
+.jumbotron.text-center {
+    font-family: jura;
+    text-align: center;
+    font-size: 400%;
+    color: white;
+}
+h2 {
+    font-size: 200%;
+}
+h3 {
+    font-size: 100%;
+}
+form-control{
+  font-align: center;
+}
+#summary {
+  font-family: jura;
+  font-size: 200%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+}
+.time {
+  font-family: digital;
+  font-size: 200%;
+}
+
+.progress {background: rgba(191, 187, 187, 1); border: 0px solid rgba(245, 245, 245, 1); border-radius: 4px; height: 30px;}
+.progress-bar-custom {background: rgba(89, 93, 97, 1);}

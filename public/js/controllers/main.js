@@ -47,4 +47,16 @@ angular.module('todoController', [])
 					$scope.todos = data; // assign our new list of todos
 				});
 		};
+
+		//Apply dates
+		$scope.scheduleTodos = function(){
+			var todoBackUp = $scope.todos
+			try {
+				$scope.todos.map(Todos.organise,[])
+				$scope.showDates = true
+			} catch (e) {
+				console.log(e)
+			}
+
+		}
 	}]);
