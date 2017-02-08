@@ -17,8 +17,11 @@ angular.module('todoService', [])
 			update : function(todoData){
 				return $http.put('/api/todos/'+ todoData._id, todoData)
 			},
+			schedule: function(){
+				return $http.get('/api/todos/scheduled')
+			},
 			//LOCAL MANIPULATION
-			organise: function(current, index, array){
+			/*organise: function(current, index, array){
 				var currentTime = new Date()
 				if(current.locked){
 					return current
@@ -64,7 +67,7 @@ angular.module('todoService', [])
 		        return current.priority - previous.priority
 		    })
 		    .map(this.organise,[])
-		  }
+		  }*/
 
 		}
 	}]);

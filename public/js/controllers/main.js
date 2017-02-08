@@ -71,7 +71,13 @@ angular.module('todoController', [])
 
 		//Apply dates
 		$scope.scheduleTodos = function(){
-			var todoBackUp = $scope.todos
+			Todos.schedule()
+			.success(function(data) {
+				$scope.showDates = true
+				$scope.todos = data;
+				$scope.loading = false;
+			})
+			/*var todoBackUp = $scope.todos
 			try {
 				$scope.todos
 				.sort(
@@ -87,7 +93,7 @@ angular.module('todoController', [])
 				$scope.showDates = true
 			} catch (e) {
 				console.log(e)
-			}
+			}*/
 
 		}
 	}]);
