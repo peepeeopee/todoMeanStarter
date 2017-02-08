@@ -40,8 +40,10 @@ angular.module('todoController', [])
 		$scope.deleteTodo = function(id) {
 			$scope.loading = true;
 
-			if(id){
-				Todos.delete(id)
+			var todoId = id//|$scope.todos[id]._id
+
+			if(todoId){
+				Todos.delete(todoId)
 				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
 					$scope.loading = false;
@@ -57,7 +59,17 @@ angular.module('todoController', [])
 		$scope.scheduleTodos = function(){
 			var todoBackUp = $scope.todos
 			try {
-				$scope.todos.map(Todos.organise,[])
+				$scope.todos
+				.sort(
+				  function (previous, current){
+					return current.duration - previous.duration
+				})
+				.sort(
+				  function (previous, current){
+					return current.priority - previous.priority
+				})
+				.map(Todos.organise,[])
+
 				$scope.showDates = true
 			} catch (e) {
 				console.log(e)

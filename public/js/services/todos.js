@@ -17,6 +17,10 @@ angular.module('todoService', [])
 			//LOCAL MANIPULATION
 			organise: function(current, index, array){
 				var currentTime = new Date()
+				if(current.locked){
+					return current
+				}
+
 				if (array[index-1]) {
 				  var previousEntry = array[index-1]
 				  current.begin = new Date(previousEntry.end)
@@ -26,14 +30,18 @@ angular.module('todoService', [])
 				  current.end = new Date(currentTime.getTime() + current.duration*60000)//helperMethods.addMinutes(currentTime, current.duration)
 				}
 				//if beginning/end time is after 5pm or beginning/end time is before 8am
-				if ((current.begin.getHours() >= 18 || current.end.getHours() >= 18)
-					  || (current.begin.getHours() <= 8 || current.end.getHours() <= 8)) {
+				if (current.begin.getHours() >= 18 || current.begin.getHours() <= 8) {
 				  var newTime = new Date()
 				  newTime.setDate(current.begin.getDate() + 1)
 				  newTime.setHours(9)
 				  newTime.setMinutes(0)
 				  current.begin = new Date(newTime)
 				  current.end = new Date(current.begin.getTime() + current.duration*60000)
+				}
+
+				while(current.begin.getDay() >= 5)
+				{
+					current.begin.setDate(current.begin.getDate() + 1)
 				}
 
 				return current
