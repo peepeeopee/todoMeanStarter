@@ -55,6 +55,20 @@ angular.module('todoController', [])
 
 		};
 
+		$scope.updateTodo = function(id){
+			$scope.loading = true;
+
+			var todoUpdateTarget = $scope.todos[id]
+			if(todoUpdateTarget){
+				Todos.update(todoUpdateTarget)
+				.success(function(data){
+					$scope.loading = false
+				})
+			} else {
+				$scope.loading = false
+			}
+		};
+
 		//Apply dates
 		$scope.scheduleTodos = function(){
 			var todoBackUp = $scope.todos

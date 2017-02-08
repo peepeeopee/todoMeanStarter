@@ -14,6 +14,9 @@ angular.module('todoService', [])
 			delete : function(id) {
 				return $http.delete('/api/todos/' + id);
 			},
+			update : function(todoData){
+				return $http.put('/api/todos/'+ todoData._id, todoData)
+			},
 			//LOCAL MANIPULATION
 			organise: function(current, index, array){
 				var currentTime = new Date()

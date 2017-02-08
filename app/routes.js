@@ -34,6 +34,17 @@ module.exports = function (app) {
 
     });
 
+    // update todo
+    app.put('/api/todos/:todo_id',function(req, res){
+      var task = req.body
+
+      Todo.save(function(err,todo){
+        if(err){
+          console.log(err)
+        }
+      })
+    })
+
     // delete a todo
     app.delete('/api/todos/:todo_id', function (req, res) {
         Todo.remove({
