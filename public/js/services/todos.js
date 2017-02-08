@@ -45,6 +45,7 @@ angular.module('todoService', [])
 				while(current.begin.getDay() >= 5)
 				{
 					current.begin.setDate(current.begin.getDate() + 1)
+					current.end.setDate(current.end.getDate() + 1)
 				}
 
 				return current
