@@ -23,7 +23,17 @@ module.exports = function (app) {
               res.send(err);
           }
 
-          res.json(todos.map(function(current, index, array){
+          res.json(
+            todos
+            .sort(
+    				  function (previous, current){
+    					return current.duration - previous.duration
+    				})
+    				.sort(
+    				  function (previous, current){
+    					return current.priority - previous.priority
+    				})
+            .map(function(current, index, array){
     				var currentTime = new Date()
     				if(current.locked){
     					return current
