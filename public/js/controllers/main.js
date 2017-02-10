@@ -81,29 +81,6 @@ angular.module('todoController', [])
 				$scope.todos = data;
 				$scope.loading = false;
 			})
-			/*var todoBackUp = $scope.todos
-			try {
-				$scope.todos
-				.sort(
-				  function (previous, current){
-					return current.duration - previous.duration
-				})
-				.sort(
-				  function (previous, current){
-					return current.priority - previous.priority
-				})
-				.map(Todos.organise,[])
-
-				$scope.showDates = true
-			} catch (e) {
-				console.log(e)
-			}*/
-
-			/*$('.shortcut').click(function() {
-			    $(this).attr('target', '_blank');
-			});
-
-			$('.dropdown-toggle').dropdown()*/
 
 		}
 
