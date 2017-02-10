@@ -97,5 +97,9 @@ angular.module('todoController', [])
 				console.log(e)
 			}*/
 
+			$('.shortcut').click(function() {
+			    $(this).attr('target', '_blank');
+			});
+
 		}
 	}]);

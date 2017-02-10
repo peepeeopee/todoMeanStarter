@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Node/Angular Todo App</title>
+	<title>Task Tracker</title>
 
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
@@ -42,7 +42,10 @@
 		<div id="todo-list" class="row">
 			<div class="col-sm-12">
 
-
+			<div class="btn-group btn-group-justified">
+				<a href="http://servicedesk/" class="btn btn-default shortcut" target="_blank">Service Desk</a>
+				<a href="https://nvisionit.atlassian.net/secure/Dashboard.jspa" class="btn btn-default shortcut" target="_blank">JIRA</a>
+			</div>
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 			<div class="table-responsive">
@@ -105,11 +108,11 @@
 								DELETE
 							</a>
 						</td>
-						<td class="rowAction">
+						<!--<td class="rowAction">
 							<a href="#" ng-click"updateTodo(todos[$index])" class="btn btn-info">
 								UPDATE
 							</a>
-						</td>
+						</td>-->
 					</tr>
 				</table>
 			</div>
