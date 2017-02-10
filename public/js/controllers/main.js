@@ -73,6 +73,10 @@ angular.module('todoController', [])
 			}
 		};
 
+		$scope.test = function(){
+			alert('hello')
+		}
+
 		//Apply dates
 		$scope.scheduleTodos = function(){
 			Todos.schedule()

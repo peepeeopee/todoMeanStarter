@@ -95,14 +95,8 @@ module.exports = function (app) {
     app.put('/api/todos',function(req, res){
       var task = req.body
 
-      Todo.save(function(err,todo){
-        if(err){
-          console.log(err)
-        }
-      })
-
       Todo.findOneAndUpdate(
-        {'_id':task._id},
+        {_id:task._id},
         task,
         {upsert:false},
         function(err,doc){
