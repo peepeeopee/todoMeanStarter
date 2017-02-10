@@ -63,11 +63,8 @@ angular.module('todoController', [])
 			var todoUpdateTarget = task
 			if(todoUpdateTarget){
 				Todos.update(todoUpdateTarget)
-				.success(function(data){
-					$scope.loading = false;
-					$scope.formData = {}; // clear the form so our user is ready to enter another
-					$scope.todos = data; // assign our new list of todos
-				})
+				$scope.reset()
+				$scope.loading = false;
 			} else {
 				$scope.loading = false
 			}
@@ -86,6 +83,26 @@ angular.module('todoController', [])
 				$scope.loading = false;
 			})
 
+		}
+
+		$scope.getTemplate = function (todo){
+			if (!$scope.selected) {
+				return '\\views\\displayRow.html'
+			}
+
+			if(todo._id === $scope.selected._id){
+				return '\\views\\editRow.html'
+			} else{
+				return '\\views\\displayRow.html'
+			}
+		}
+
+		$scope.reset = function (){
+			$scope.selected = {}
+		}
+
+		$scope.editTodo = function (todo) {
+			$scope.selected = angular.copy(todo)
 		}
 
 		$scope.$watch('todos',function(newValue,oldValue,scope){

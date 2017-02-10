@@ -1,0 +1,25 @@
+<td><input type="text" ng-model="todo.name" class="form-control input-sm"/></td>
+<td><input type="number" ng-model="todo.priority" class="form-control input-sm"/></td>
+<td><input type="number" ng-model="todo.duration" class="form-control input-sm"/></td>
+<td><input type="checkbox" ng-model="todo.locked" class="form-control input-sm"/></td>
+<td><input type="date" ng-model="todo.begin" class="form-control"/></td>
+<td><input type="date" ng-model="todo.end" class="form-control"/></td>
+<td>
+  <div class="btn-group" dropdown>
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li>
+        <a class="menuitem" href="#" data-ng-click="updateTodo(todos[$index])">
+        Save
+        </a>
+      </li>
+      <li>
+        <a class="menuitem" href="#" data-ng-click="reset()">
+        Cancel
+        </a>
+      </li>
+    </ul>
+  </div>
+</td>

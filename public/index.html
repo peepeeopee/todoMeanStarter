@@ -132,35 +132,7 @@
 						</th>
 					</tr>
 				</thead>
-					<tr ng-repeat="todo in todos | orderBy:sortType:sortReverse">
-						<td>{{todo.name}}</td>
-						<td>{{todo.priority}}</td>
-						<td>{{todo.duration}}</td>
-						<td><input type="checkbox" ng-model="todo.locked"></td>
-						<td ng-show="showDates">{{todo.begin | date:'MMM-dd HH:mm'}}</td>
-						<td ng-show="showDates">{{todo.end | date:'MMM-dd HH:mm'}}</td>
-						<td>
-							<!--<a href="#" ng-click="deleteTodo(todos[$index]._id)" class="btn btn-danger">
-								DELETE
-							</a>-->
-							<div class="btn-group" dropdown>
-								<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Action <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a class="menuitem" href="#" data-ng-click="deleteTodo(todos[$index]._id)">
-										DELETE
-										</a>
-									</li>
-									<li>
-										<a class="menuitem" href="#" data-ng-click="updateTodo(todos[$index])">
-										UPDATE
-										</a>
-									</li>
-								</ul>
-							</div>
-						</td>
+					<tr ng-repeat="todo in todos | orderBy:sortType:sortReverse" ng-include="getTemplate(todo)">
 					</tr>
 				</table>
 			</div>
