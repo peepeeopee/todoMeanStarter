@@ -108,6 +108,16 @@ angular.module('todoController', [])
 		}
 
 		$scope.$watch('todos',function(newValue,oldValue,scope){
+			if($scope.loading){
+				return
+			}
+			if(newValue.length && !oldValue){
+				$scope.scheduleTodos()
+				return
+			}
+			if(newValue.length == oldValue.length){
+				return
+			}
 			$scope.scheduleTodos()
 		}, true)
 	}]);

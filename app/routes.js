@@ -27,12 +27,15 @@ module.exports = function (app) {
             todos
             .sort(
     				  function (previous, current){
-    					return current.duration - previous.duration
+                if(current.priority == previous.priority){
+                  return previous.duration - current.duration
+                }
+                return current.priority - previous.priority
     				})
-    				.sort(
+    				/*.sort(
     				  function (previous, current){
     					return current.priority - previous.priority
-    				})
+    				})*/
             .map(function(current, index, array){
     				var currentTime = new Date()
     				if(current.locked){
