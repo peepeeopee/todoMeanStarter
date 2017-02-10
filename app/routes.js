@@ -57,9 +57,9 @@ module.exports = function (app) {
     				  current.end = new Date(current.begin.getTime() + current.duration*60000)
     				}
 
-    				while(current.begin.getDay() >= 5)
+    				while(current.begin.getDay() == 6 || current.begin.getDay() == 0)
     				{
-    					current.begin.setDate(current.begin.getDate() + 1)
+              current.begin.setDate(current.begin.getDate() + 1)
     					current.end.setDate(current.end.getDate() + 1)
     				}
 
