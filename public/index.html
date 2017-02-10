@@ -9,6 +9,8 @@
 
 	<title>Task Tracker</title>
 
+
+
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -22,7 +24,12 @@
 	</style>
 
 	<!-- SPELLS -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script><!-- load angular -->
+	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
@@ -46,6 +53,38 @@
 				<a href="http://servicedesk/" class="btn btn-default shortcut" target="_blank">Service Desk</a>
 				<a href="https://nvisionit.atlassian.net/secure/Dashboard.jspa" class="btn btn-default shortcut" target="_blank">JIRA</a>
 			</div>
+
+			<br>
+
+			<div id="todo-form" class="row">
+					<form class="col-sm-8 form-inline">
+						<div class="card">
+							<div class="form-group card-block">
+								<label for="taskName">Name:</label>
+								<input id="taskName" type="text" class="form-control input-lg text-center" placeholder="Description of task" ng-model="formData.newTask.name">
+							</div>
+						</div>
+						<br>
+						<div class="card">
+							<div class="form-group card-block">
+								<label for="taskName">Priority:</label>
+								<input id="taskName" type="number" class="form-control input-sm" min="0" max="10" placeholder="1" ng-model="formData.newTask.priority">
+							</div>
+							<div class="form-group">
+								<label for="taskDuration">Duration:</label>
+								<input id="taskDuration" type="number" class="form-control input-sm" min="15" max="240" step="15" placeholder="15" ng-model="formData.newTask.duration">
+							</div>
+						</div>
+						<br>
+						<!-- createToDo() WILL CREATE NEW TODOS -->
+						<button type="submit" class="btn btn-info btn-lg" ng-click="createTodo()">Add</button>
+					</form>
+					<form class="col-sm-4">
+						<button class="btn btn-success btn-lg" ng-click="scheduleTodos()">Schedule</button>
+					</form>
+			</div>
+
+			<br>
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 			<div class="table-responsive">
@@ -103,16 +142,28 @@
 						<td><input type="checkbox" ng-model="todo.locked"></td>
 						<td ng-show="showDates">{{todo.begin | date:'MMM-dd HH:mm'}}</td>
 						<td ng-show="showDates">{{todo.end | date:'MMM-dd HH:mm'}}</td>
-						<td class="rowAction">
-							<a href="#" ng-click="deleteTodo(todos[$index]._id)" class="btn btn-danger">
+						<td>
+							<!--<a href="#" ng-click="deleteTodo(todos[$index]._id)" class="btn btn-danger">
 								DELETE
-							</a>
+							</a>-->
+							<div class="btn-group" dropdown>
+								<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Action <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li>
+										<a href="#" ng-click="deleteTodo(todos[$index]._id)">
+										DELETE
+										</a>
+									</li>
+									<li>
+										<a href="#" ng-click"updateTodo(todos[$index])">
+										UPDATE
+										</a>
+									</li>
+								</ul>
+							</div>
 						</td>
-						<!--<td class="rowAction">
-							<a href="#" ng-click"updateTodo(todos[$index])" class="btn btn-info">
-								UPDATE
-							</a>
-						</td>-->
 					</tr>
 				</table>
 			</div>
@@ -125,33 +176,7 @@
 		</div>
 
 		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">
-				<form class="col-sm-8 form-inline">
-					<div class="card">
-						<div class="form-group card-block">
-							<label for="taskName">Name:</label>
-							<input id="taskName" type="text" class="form-control input-lg text-center" placeholder="Description of task" ng-model="formData.newTask.name">
-						</div>
-					</div>
-					<br>
-					<div class="card">
-						<div class="form-group card-block">
-							<label for="taskName">Priority:</label>
-							<input id="taskName" type="number" class="form-control input-sm" min="0" max="10" placeholder="1" ng-model="formData.newTask.priority">
-						</div>
-						<div class="form-group">
-							<label for="taskDuration">Duration:</label>
-							<input id="taskDuration" type="number" class="form-control input-sm" min="15" max="240" step="15" placeholder="15" ng-model="formData.newTask.duration">
-						</div>
-					</div>
-					<br>
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-info btn-lg" ng-click="createTodo()">Add</button>
-				</form>
-				<form class="col-sm-4 form-inline">
-					<button class="btn btn-success btn-lg" ng-click="scheduleTodos()">Schedule</button>
-				</form>
-		</div>
+
 
 		<!--<div class="text-center text-muted">
 			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
