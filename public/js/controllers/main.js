@@ -12,7 +12,7 @@ angular.module('todoController', [])
 			.success(function(data) {
 				$scope.todos = data;
 				//TODO Move auto scheduling to other section
-				$scope.scheduleTodos()
+				//$scope.scheduleTodos()
 				$scope.loading = false;
 			});
 
@@ -106,4 +106,8 @@ angular.module('todoController', [])
 			$('.dropdown-toggle').dropdown()*/
 
 		}
+
+		$scope.$watch('todos',function(newValue,oldValue,scope){
+			$scope.scheduleTodos()
+		}, true)
 	}]);
