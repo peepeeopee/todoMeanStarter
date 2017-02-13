@@ -7,6 +7,7 @@ var database = require('./config/database'); 			// load the database config
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var favicon = require('serve-favicon')
 
 // configuration ===============================================================
 mongoose.connect(database.localUrl); 	// Connect to local MongoDB instance. A remoteUrl is also available (modulus.io)
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({'extended': 'true'})); // parse application/x-www
 app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.json({type: 'application/vnd.api+json'})); // parse application/vnd.api+json as json
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request
+app.use(favicon('./public/images/favicon.ico'))
 
 
 // routes ======================================================================
