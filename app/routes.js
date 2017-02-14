@@ -1,4 +1,5 @@
 var Todo = require('./models/todo');
+var Completed = require('./models/completed')
 
 function getTodos(res) {
     Todo.find(function (err, todos) {
@@ -129,4 +130,26 @@ module.exports = function (app) {
     app.get('*', function (req, res) {
         res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
+
+    //complete todo
+    app.post('/api/todos/complete/:todo_id',function(req,res){
+      //fix this up to have the route only do the saving...
+      //remove logic from here
+      var taskToBeCompletedId = req.params.todo_id;
+
+      Completed.create(taskToBeInserted,function(err,todo){
+          if(err)
+              res.send(err)
+      })
+      .success(
+        Todo.remove({
+            _id: req.params.todo_id
+        }, function (err, todo) {
+            if (err)
+                res.send(err);
+
+            getTodos(res);
+        });
+      )
+    })
 };
